@@ -1,0 +1,18 @@
+networks:
+  my-network2:
+
+services:
+  proyecto-ordinario:
+    container_name: proyecto-ordinario
+    build: .
+    restart: always
+    ports:
+      - 3002:3000
+    volumes:
+      - ./proyecto-ordinario:/usr/src/app
+      - /usr/src/app/node_modules
+      - /usr/src/app/.next
+    command: >
+      sh -c "npm install && npm run dev"
+    networks:
+      - my-network2
